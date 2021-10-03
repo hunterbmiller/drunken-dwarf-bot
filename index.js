@@ -2,7 +2,6 @@ const fs = require('fs');
 const { Client, Intents } = require('discord.js');
 const { config } = require('dotenv');
 const { COMMAND_PREFIX } = require('./constants.js');
-
 const commands = require('./commands/index.js');
 config();
 
