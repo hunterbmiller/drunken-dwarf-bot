@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { MessageEmbed } = require('discord.js');
-const { c_to_f } = require('../utils/conversions.js');
 const { DateTime } = require("luxon");
+const { c_to_f } = require('../utils/conversions.js');
 
 const constructUrl = (location) => {
     return `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${process.env.WEATHER_API_KEY}`;
@@ -40,8 +40,7 @@ const genericErrorEmbed = () => {
 };
 
 module.exports = function(message, args) {
-    const location = args.join(', ');
-    getWeather(encodeURIComponent(location)).then((resp) => {
+    getWeather(encodeURIComponent(args.join(' '))).then((resp) => {
         message.channel.send({ embeds: [formatWeather(resp.data)] });
     }).catch(() => {
         message.channel.send({ embeds: [genericErrorEmbed()]});
